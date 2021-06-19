@@ -24,7 +24,10 @@
 
 ## Usage
 ### No popin
+Click on posterframe to start video over it.
+Ratio depend of posterframe img
 
+#### Javascript
 ```javascript
 import ytPlayer from "../../modules/ytPlayer/ytPlayer.js";
 
@@ -45,8 +48,15 @@ const yt = new ytPlayer(cta, {
     },
 });
 ```
-### Popin
+#### css
+```css
 
+```
+### Popin
+Open popin and start video.
+Ratio depend of image.
+In this exemple it's 16/9
+#### javascript
 ```javascript
 import ytPlayer from "../../modules/ytPlayer/ytPlayer.js";
 
@@ -71,7 +81,10 @@ const yt = new ytPlayer(cta, {
     }
 });
 ```
+#### css
+```css
 
+```
 
 ## Demo
 [See codepen demo](https://codepen.io/natjo/pen/NmMzNd?editors=0011)
