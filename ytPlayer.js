@@ -20,14 +20,14 @@
 
         const onPlayerStateChange = (e) => {
             if (e.data == YT.PlayerState.ENDED) {
-                events.onPlayerEnded();
+                events.onEnd();
             }
         };
         const onPlayerReady = (e) => {
             this.play = () => {
                 player.seekTo(0);
             }
-            events.onPlayerReady();
+            events.onReady();
         };
         player = new YT.Player(`player-${videoId}`, {
             videoId: videoId,
