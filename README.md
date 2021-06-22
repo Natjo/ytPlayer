@@ -32,8 +32,7 @@ Ratio depend of posterframe img
 
 ```html
 <div class="videoPlayer">
-    <button class="cta" aria-controls="player-kA78LV2DIP8" data-video-id="kA78LV2DIP8"
-    ></button>
+    <button class="cta" aria-controls="player-kA78LV2DIP8" data-video-id="kA78LV2DIP8"></button>
     <picture>
         <source srcset="https://picsum.photos/id/722/1600/900" type="image/jpg"/>
         <img src="https://picsum.photos/id/722/1600/900" aria-hidden="true" alt="" loading="lazy" />
@@ -61,7 +60,7 @@ const yt = new ytPlayer(cta, {
             yt.play();
             video.setAttribute("aria-hidden", false);
         };
-    },
+    }
 });
 ```
 
@@ -121,13 +120,7 @@ In this exemple it's 16/9
 #### html
 
 ```html
-<button
-    class="videoPlayer-cta"
-    aria-controls="popin-kA78LV2DIP8"
-    data-video-id="kA78LV2DIP8"
->
-    open
-</button>
+<button class="videoPlayer-cta" aria-controls="popin-kA78LV2DIP8" data-video-id="kA78LV2DIP8">open</button>
 <div class="videoPlayer" id="popin-kA78LV2DIP8" aria-modal="true" aria-hidden="true">
     <div class="box">
         <header>
@@ -171,7 +164,7 @@ const yt = new ytPlayer(cta, {
         btn_close.onclick = () => {
             popinVideo.setAttribute("aria-hidden", true);
         };
-    },
+    }
 });
 ```
 
