@@ -6,14 +6,14 @@
 
 | Parameter | Type        | Default | Description |
 | --------- | ----------- | ------- | ----------- |
-| cta       | HTMLElement | -       |             |
+| el       | HTMLElement | -       |             |
 
 ## Methods & Properties
 
-| Methods            | Description                                 |
-| ------------------ | ------------------------------------------- |
-| ytPlayer.onReady() | Fire when yt script loaded and player ready |
-| ytPlayer.onEnd()   | Fire at the end of video                    |
+| Methods            | Description                        |
+| ------------------ | -----------------------------------|
+| ytPlayer.onplay() | Fire when yt script loaded and play |
+| ytPlayer.onend()   | Fire at the end of video           |
 
 ## Events
 
@@ -35,7 +35,7 @@ Ratio depend of posterframe img
     <button class="ytPlayer-cta" aria-expanded="false" aria-controls="kA78LV2DIP8" aria-label="Play video">Play</button>
     <picture>
         <source srcset="https://picsum.photos/id/722/1600/900" type="image/jpg">
-        <img src="https://picsum.photos/id/722/1600/900" aria-hidden="true" alt="" loading="lazy">
+        <img src="https://picsum.photos/id/722/1600/900" aria-hidden="true" alt="" loading="lazy" width="160" height="90">
     </picture>
     <div class="ytPlayer-iframe" id="kA78LV2DIP8" aria-hidden="true"></div>
 </div>
