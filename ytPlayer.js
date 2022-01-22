@@ -12,53 +12,68 @@
  * @method play - start the video at the begining
  * 
  */
+ function ytPlayer(el, events = {}) {
+	const cta = el.querySelector('.ytPlayer-cta');
+	const videoId = cta.getAttribute('aria-controls');
+	let iframe;
+	let player;
+	let apiReady = false;
 
- function ytPlayer(cta, events) {
-    const ready = () => {
-        let player;
-        const videoId = cta.dataset.videoId;
+	const play = () => {
+		cta.setAttribute('aria-expanded', true);
+		iframe.setAttribute('aria-hidden', false);
+		player.seekTo(0);
+		typeof events.onplay === 'function' && events.onplay();
+	}
 
-        const onPlayerStateChange = (e) => {
-            if (e.data == YT.PlayerState.ENDED) {
-                events.onEnd();
-            }
-        };
-        const onPlayerReady = (e) => {
-            this.play = () => {
-                player.seekTo(0);
-            }
-            events.onReady();
-        };
-        player = new YT.Player(`player-${videoId}`, {
-            videoId: videoId,
-            playerVars: {
-                mute: 1,
-                autoplay: 0,
-                controls: 1,
-                autohide: 1,
-                showinfo: 0,
-                rel: 0,
-            },
-            events: {
-                onReady: onPlayerReady,
-                onStateChange: onPlayerStateChange,
-            },
-        });
-    };
+	const stop = () => {
+		cta.setAttribute('aria-expanded', false);
+		iframe.setAttribute('aria-hidden', true);
+		typeof events.onend === 'function' && events.onend();
+	}
 
-    if (!document.getElementById("yt_api")) {
-        let tag = document.createElement("script");
-        tag.src = "https://www.youtube.com/iframe_api";
-        tag.id = "yt_api";
-        tag.setAttribute("defer", "");
-        const firstScriptTag = document.getElementsByTagName("script")[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        window.onYouTubeIframeAPIReady = () => {
-            ready();
-        };
-    } else {
-        ready();
-    }
+	const api = () => {
+		if (!document.getElementById('yt_api')) {
+			const script = document.createElement('script');
+			script.src = 'https://www.youtube.com/iframe_api';
+			script.id = 'yt_api';
+			script.setAttribute('defer', '');
+			document.head.appendChild(script);
+			window.onYouTubeIframeAPIReady = () => ready();
+		} else {
+			ready();
+		}
+		apiReady = true;
+	}
+
+	const onPlayerStateChange = (e) => {
+		e.data == YT.PlayerState.ENDED && stop();
+	};
+
+	const onPlayerReady = (e) => {
+		iframe = cta.parentNode.querySelector('.ytPlayer-iframe');
+		play();
+	};
+
+	const ready = () => {
+		player = new YT.Player(videoId, {
+			videoId: videoId,
+			playerVars: {
+				mute: 1,
+				autoplay: 0,
+				controls: 1,
+				autohide: 1,
+				showinfo: 0,
+				rel: 0
+			},
+         events: {
+				onReady: onPlayerReady,
+				onStateChange: onPlayerStateChange
+			}
+		});
+	};
+
+	 cta.onclick = () => !apiReady ? api() : play();
 }
 
 export default ytPlayer;

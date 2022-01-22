@@ -31,13 +31,13 @@ Ratio depend of posterframe img
 #### html
 
 ```html
-<div class="videoPlayer">
-    <button class="cta" aria-controls="player-kA78LV2DIP8" data-video-id="kA78LV2DIP8"></button>
+<div class="ytPlayer">
+    <button class="ytPlayer-cta" aria-expanded="false" aria-controls="kA78LV2DIP8" aria-label="Play video">Play</button>
     <picture>
-        <source srcset="https://picsum.photos/id/722/1600/900" type="image/jpg"/>
-        <img src="https://picsum.photos/id/722/1600/900" aria-hidden="true" alt="" loading="lazy" />
+        <source srcset="https://picsum.photos/id/722/1600/900" type="image/jpg">
+        <img src="https://picsum.photos/id/722/1600/900" aria-hidden="true" alt="" loading="lazy">
     </picture>
-    <div class="player" id="player-kA78LV2DIP8" aria-hidden="true"></div>
+    <div class="ytPlayer-iframe" id="kA78LV2DIP8" aria-hidden="true"></div>
 </div>
 ```
 
@@ -46,64 +46,7 @@ Ratio depend of posterframe img
 ```javascript
 import ytPlayer from "../../modules/ytPlayer/ytPlayer.js";
 
-const cta = document.querySelector(".cta");
-let video;
-
-const yt = new ytPlayer(cta, {
-    onEnd() {
-        video.setAttribute("aria-hidden", true);
-    },
-    onReady() {
-        video = el.querySelector(".player");
-
-        cta.onclick = () => {
-            yt.play();
-            video.setAttribute("aria-hidden", false);
-        };
-    }
-});
-```
-
-#### css
-
-```css
-.videoPlayer {
-    position: relative;
-
-    .cta {
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: #fff;
-
-        &:before {
-            content: "play";
-        }
-    }
-    img {
-        width: 100%;
-    }
-    .player {
-        position: absolute;
-        z-index: 0;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-
-        &[aria-hidden="false"] {
-            opacity: 1;
-            z-index: 10;
-        }
-    }
-}
+ytPlayer(document.querySelector(".ytPlayer"));
 ```
 
 ## Demo
@@ -111,6 +54,7 @@ const yt = new ytPlayer(cta, {
 [See codepen demo](https://codepen.io/natjo/pen/OJpGdBY?editors=1010)
 
 ### Popin
+TODO
 
 Open popin and start video.
 Display posterframe at the end.
